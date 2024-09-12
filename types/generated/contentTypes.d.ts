@@ -374,17 +374,33 @@ export interface ApiArticleArticle extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    Title: Attribute.String;
-    Author: Attribute.String;
-    Release: Attribute.Date;
-    Content: Attribute.RichText &
+    title: Attribute.String;
+    author: Attribute.String;
+    release: Attribute.DateTime;
+    content: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor.CKEditor',
         {
           output: 'Markdown';
-          preset: 'rich';
+          preset: 'standard';
         }
       >;
+    cover: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    cta_url: Attribute.String;
+    cta_btn: Attribute.Enumeration<
+      [
+        'Subscribe',
+        'Learn More',
+        'Get Started',
+        'Contact Us',
+        'Download Now',
+        'Buy Now',
+        'Request Demo',
+        'Sign Up',
+        'Join Now',
+        'Try for Free'
+      ]
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
